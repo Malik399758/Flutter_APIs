@@ -12,12 +12,17 @@ class PostScreen extends StatefulWidget {
 }
 
 class _PostScreenState extends State<PostScreen> {
+  List<PostModel> _list = [];
   var url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
 
-  getAPI()async{
+ Future<List<PostModel>> getAPI()async{
     final response = await http.get(url);
     final responseBody = jsonDecode(response.body);
-    return responseBody;
+    //return responseBody;
+   for(var each in responseBody){
+     _list.add(PostModel.fromMap(each));
+   }
+   return _list;
   }
   
   @override
@@ -31,13 +36,20 @@ class _PostScreenState extends State<PostScreen> {
           future: getAPI(),
           builder: (context,AsyncSnapshot snapshot){
             if(snapshot.hasData){
-              return ListView.builder(
-                itemCount: snapshot.data.length,
+              return ListView.separated(
+                separatorBuilder: (context,index){
+                  return Divider();
+                },
+                itemCount: _list.length,
                   itemBuilder:(context,index){
                     return ListTile(
-                      leading: CircleAvatar(child: Text(snapshot.data[index]['id'].toString())),
-                      title: Text('Title :${snapshot.data[index]['title']}'),
-                      subtitle: Text('SubTile :${snapshot.data[index]['body'].toString()}'),
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.green,
+                          child: Text(_list[index].id.toString(),style: TextStyle(
+                            color: Colors.white
+                          ),),),
+                      title: Text(_list[index].title.toString()),
+                      subtitle: Text(_list[index].body.toString(),),
                     );
                   });
             }else{
