@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smit_api/api_screens/post_screen.dart';
+import 'package:smit_api/api_screens/user1_screen.dart';
+import 'package:smit_api/api_screens/users_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +35,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: PostScreen()
+      home:User1Screen()
+      // PostScreen()
     );
   }
 }
