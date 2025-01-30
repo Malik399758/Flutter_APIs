@@ -4,6 +4,9 @@ import 'package:smit_api/api_tasks/post_api/edit_profile_screen.dart';
 // import 'package:smit_api/api_screens/user1_screen.dart';
 // import 'package:smit_api/api_screens/users_screen.dart';
 import 'package:smit_api/api_tasks/post_api/post_api_screen.dart';
+import 'package:smit_api/api_tasks/post_api/splash_screen.dart';
+
+import 'get_api/api_screens/post_screen.dart';
 
 // import 'api_screens/dog_screen.dart';
 
@@ -24,10 +27,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:EditProfileScreen(),
+      home:SplashScreen()
+      //EditProfileScreen(),
       //PostApiScreen(),
       //DogScreen()
-      // PostScreen()
     );
   }
 }
